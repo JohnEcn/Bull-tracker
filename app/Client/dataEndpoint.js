@@ -5,23 +5,23 @@
     {
         const currencyParam = "vs_currency=" + currency;
         const daysBefore = "days=" + days;
-        const intervalParam = "interval=" + interval;
-        
+        const intervalParam = "interval=" + interval;         
+
         const path = "/coins/"+ coinName + "/market_chart";
         const queryStr = "?" + currencyParam + "&" + daysBefore + "&" + intervalParam;
         const url = host + path + queryStr;
 
-        let response = await new Promise(
+        const response = await new Promise(
             resolve => 
             {
                 const requestHandler = new XMLHttpRequest();
                 requestHandler.open("GET",url);                
                 requestHandler.onload = function() 
                 {          
-                    if(requestHandler.status == 200)   
+                    if(requestHandler.readyState == 4)   
                     {
-                        resolve(requestHandler.response);
-                    }                          
+                        resolve({requestType:"historicCoinData",coinName:coinName,httpCode:requestHandler.status,response:requestHandler.response});
+                    }                      
                 }
                 requestHandler.send();
             }); 
@@ -46,10 +46,10 @@
                 requestHandler.open("GET",url);                
                 requestHandler.onload = function() 
                 {          
-                    if(requestHandler.status == 200)   
+                    if(requestHandler.readyState == 4)   
                     {
-                        resolve(requestHandler.response);
-                    }                          
+                        resolve({requestType:"currentCoinData",httpCode:requestHandler.status,response:requestHandler.response});
+                    }                             
                 }
                 requestHandler.send();
             }); 
