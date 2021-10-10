@@ -5,11 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../UI/css/mainStructure.css">
+    <link rel="stylesheet" href="../UI/css/mainStyle.css">
+    <link rel="stylesheet" href="../UI/css/coinList.css">
 </head>
 <body>
-    
-</body>
+    <div id="mainContainer">
+        <div id="leftSidePanel">
+            <div id="coinListContainer">
+               
+                <div id="coinLabelsRow" class="coinListRow">
+                    <div id="leftSegment" class="coinListRowSegment">
+                    </div>
+                    <div id="middleSegment" class="coinListRowSegment">
+                        <span class="coinLabel">Price</span>
+                    </div>
+                    <div id="rightSegment" class="coinListRowSegment">
+                        <span class="coinLabel">Holdings</span>
+                    </div>  
+                    <div id="buttonsSegment" class="coinListRowSegment">
+                    </div>
+                </div>
 
+                <div  class="coinListRow" id="coinRowPrototype">
+                    <div id="leftSegment" class="coinListRowSegment">
+                        <div id="upperSegment" class="coinListColumnSegment"></div>
+                        <div id="midSegment" class="coinListColumnSegment">
+                            <img id="coinIcon" src="https://cryptoicon-api.vercel.app/api/icon/btc" alt="">
+                            <span id="coinNameLabel">Bitcoin</span>
+                        </div>
+                        <div id="bottomSegment" class="coinListColumnSegment">
+                        </div>
+                    </div>
+                    <div id="middleSegment" class="coinListRowSegment">
+                        <div id="upperSegment" class="coinListColumnSegment"></div>
+                        <div id="midSegment" class="coinListColumnSegment">
+                            <span id="coinPriceLabel">$32.238,21</span>
+                        </div>
+                        <div id="bottomSegment" class="coinListColumnSegment">
+                            <span id="percentChange">12.3%</span>
+                        </div>
+                    </div>
+                    <div id="rightSegment" class="coinListRowSegment">
+                        <div id="upperSegment" class="coinListColumnSegment"></div>
+                        <div id="midSegment" class="coinListColumnSegment">
+                            <span id="holdingsPriceLabel">$1201,21</span>
+                        </div>
+                        <div id="bottomSegment" class="coinListColumnSegment">
+                            <span id="coinHoldings">0.05</span>
+                        </div>
+                    </div>
+                    <div id="buttonsSegment" class="coinListRowSegment">
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        <div id="rightSidePanel">
+            <div id="portfChartContainer">
+
+            </div>
+        </div>
+    </div>    
+</body>
+<script src="../UI/Javascript/coinList.js"></script>
 <script src="utils.js"></script>
 <script src="dataEndpoint.js"></script>
 <script src="coinData.js"></script>

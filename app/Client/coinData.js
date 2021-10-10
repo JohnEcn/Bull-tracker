@@ -1,7 +1,12 @@
 {
-    function getCoinsData(coinNames,currency,dataDaysBefore,interval)
+    function getCoinsData(coinList,currency,dataDaysBefore,interval)
     {
         const promiseArr = [];
+        const coinNames = [];
+        coinList.forEach(element=>
+            {
+                coinNames.push(element.coinName)
+            })
 
         //Fetching historical data for each coin
         for(let i = 0; i<coinNames.length; i++)
@@ -83,7 +88,7 @@
         return coinFormattedData;
     }
 
-    function extractCoinData(coinsData,holdings)
+    function extractCoinData(coinsData,coinsList)
     {
         const formattedData = [];
 
@@ -93,9 +98,19 @@
         let currentDataKeys = Object.keys(coinsData[0].currentData);
         let priceKey = currentDataKeys[0].length < currentDataKeys[1].length ? currentDataKeys.splice(0,1)[0] : currentDataKeys.splice(1,1)[0];
         let mkCapKey = currentDataKeys[0];
-
+        let holdings = 0;
+        let coinSymbol= 0;
         for(let i = 0; i<coinsData.length; i++)
         {        
+            for(let j = 0; j<coinsList.length; j++)
+            {
+                if(coinsList[j].coinName == coinsData[i].coinName)
+                {
+                    holdings = coinsList[j].holdings; 
+                    coinSymbol = coinsList[j].symbol;                 
+                }
+            }
+
             //Find least recent price / max price / min price
             //Only if historical data exists
             //[oldestPrice,minPrice,maxPrice]
@@ -104,7 +119,8 @@
             formattedData.push(
                 {
                     coinName:coinsData[i].coinName,
-                    holdings:holdings[coinsData[i].coinName],
+                    coinSymbol:coinSymbol,
+                    holdings:holdings,
                     currentPrice:coinsData[i].currentData[priceKey],
                     mkCap:coinsData[i].currentData[mkCapKey],
                     percChange: ((coinsData[i].currentData[priceKey] - priceData[0]) / priceData[0] ) *100,
@@ -144,12 +160,21 @@
                 }
                 return [oldestPrice,minPrice,maxPrice];  
            } 
-        return [-NaN,NaN,NaN];                           
+        return [NaN,NaN,NaN];                           
     }
     
-    function buildPortfolioChartData(coinsData,holdingsArr)
-    {           
-        const portfChartData = [];  
+    function buildPortfolioChartData(coinsData,coinsList)
+    {      
+        //Extract the holdings to an assoc array 
+        let holdingsArr = [];
+        coinsList.forEach(element =>
+            {
+                holdingsArr[element.coinName] = element.holdings;
+            })    
+
+        const portfChartData = []; 
+        
+        //Find the min array size of all historicData arrays
         let minArrSize = Infinity;
         for(let k = 0; k<coinsData.length; k++)
         {
@@ -159,6 +184,7 @@
             }
         }
         
+        //Calculate historic data
         for(let i = 0; i<minArrSize; i++)
         {
             let holdings = 0;
@@ -175,7 +201,8 @@
 
             portfChartData.push([new Date(avgDate/coinsData.length).toLocaleString('en-GB'),holdings])
         }
-    
+        
+        //Calculate current data
         let currentHoldings = 0;
         for(let k = 0; k<coinsData.length; k++)
         {
