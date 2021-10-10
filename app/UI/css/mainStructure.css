@@ -1,0 +1,60 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #15121f;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Roboto", sans-serif;
+}
+#mainContainer {
+  width: 1400px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#leftSidePanel {
+  max-width: 50%;
+  height: 100%;
+  padding-right: 30px;
+  padding-left: 10px;
+  background-color: #15121f;
+  flex: auto 1 1;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#rightSidePanel {
+  max-width: 50%;
+  height: 100%;
+  padding-left: 30px;
+  padding-right: 10px;
+  background-color: #15121f;
+  flex: auto 1 1;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#coinListContainer {
+  max-width: 800px;
+  padding-top: 10px;
+  height: 93%;
+  flex: auto 1 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+#portfChartContainer {
+  max-width: 600px;
+  height: 65%;
+  flex: auto 1 1;
+}

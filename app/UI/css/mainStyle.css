@@ -1,0 +1,22 @@
+#coinListContainer {
+  background-color: #191625;
+  border-radius: 35px;
+}
+#portfChartContainer {
+  background-color: #191625;
+  border-radius: 35px;
+}
+#coinLabelsRow {
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 5px;
+}
+.coinListRow {
+  border-bottom: 1px solid #636363;
+  background-color: #191625;
+}
+.coinLabel {
+  color: #7741a3;
+  font-size: 18px;
+}
