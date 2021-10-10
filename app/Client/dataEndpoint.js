@@ -43,7 +43,8 @@
             resolve => 
             {
                 const requestHandler = new XMLHttpRequest();
-                requestHandler.open("GET",url);                
+                requestHandler.open("GET",url);   
+                requestHandler.setRequestHeader('Cache-Control', 'no-cache');             
                 requestHandler.onload = function() 
                 {          
                     if(requestHandler.readyState == 4)   
