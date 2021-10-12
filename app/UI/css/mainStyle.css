@@ -3,8 +3,14 @@
   border-radius: 35px;
 }
 #portfChartContainer {
-  background-color: #191625;
   border-radius: 35px;
+  background: rgb(25, 22, 37);
+  background: linear-gradient(
+    180.14deg,
+    rgb(33, 48, 36) 3.77%,
+    rgb(38, 34, 53) 32.44%,
+    rgb(38, 34, 53) 99.88%
+  );
 }
 #coinLabelsRow {
   border-top-left-radius: 35px;

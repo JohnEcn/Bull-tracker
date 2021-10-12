@@ -21,8 +21,6 @@ body {
 #leftSidePanel {
   max-width: 50%;
   height: 100%;
-  padding-right: 30px;
-  padding-left: 10px;
   background-color: #15121f;
   flex: auto 1 1;
 
@@ -33,8 +31,6 @@ body {
 #rightSidePanel {
   max-width: 50%;
   height: 100%;
-  padding-left: 30px;
-  padding-right: 10px;
   background-color: #15121f;
   flex: auto 1 1;
 
@@ -57,4 +53,9 @@ body {
   max-width: 600px;
   height: 65%;
   flex: auto 1 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
