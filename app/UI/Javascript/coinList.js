@@ -6,7 +6,7 @@ function displayCoinList(coinData,currencyStr)
     //Get the prototype row and remove the id
     const coinRowDiv = document.getElementById("coinRowPrototype");
     coinRowDiv.id = "";
-
+    coinRowDiv.style = "visibility:initial";
     //Delete the prototype row
     coinRowDiv.remove();
 
@@ -20,7 +20,7 @@ function displayCoinList(coinData,currencyStr)
         newRow.childNodes[1].childNodes[3].childNodes[1].src="https://cryptoicons.org/api/icon/"+ coinData[i].coinSymbol +"/40";
         newRow.childNodes[1].childNodes[3].childNodes[1].onerror = function()
         {
-            newRow.childNodes[1].childNodes[3].childNodes[1].src="https://cryptoicons.org/api/icon/generic/40";
+            newRow.childNodes[1].childNodes[3].childNodes[1].src="https://cryptoicon-api.vercel.app/api/icon/"+ coinData[i].coinSymbol;
         };
         //Coin price
         newRow.childNodes[3].childNodes[3].childNodes[1].innerHTML = currencyStr + formatPrices(coinData[i].currentPrice);
