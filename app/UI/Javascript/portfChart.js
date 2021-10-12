@@ -66,6 +66,12 @@ function buildChart(dataset)
         }
     }; 
     
+    //Attempt to destroy chart if it exists
+    if(Chart.getChart('myChart') !=null)
+    {
+        Chart.getChart('myChart').destroy();
+    }
+    
     var myChart = new Chart(document.getElementById('myChart'),config);
 }
 

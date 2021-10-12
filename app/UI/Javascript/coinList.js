@@ -1,14 +1,17 @@
 function displayCoinList(coinData,currencyStr)
 {
     //Get the parent element of coinsList
-    const coinList = document.getElementById("coinListContainer");
+    const coinList = document.getElementById("coinListContainer");    
 
     //Get the prototype row and remove the id
     const coinRowDiv = document.getElementById("coinRowPrototype");
-    coinRowDiv.id = "";
-    coinRowDiv.style = "visibility:initial";
-    //Delete the prototype row
-    coinRowDiv.remove();
+    const labels = document.getElementById("coinLabelsRow");
+
+    //Empty the list and repopulate it to make possible to restart the app
+    //with the load() funtion;
+    coinList.innerHTML = "";
+    coinList.appendChild(labels);
+    coinList.appendChild(coinRowDiv);
 
     for(let i=0;i<coinData.length;i++)
     {
@@ -31,10 +34,10 @@ function displayCoinList(coinData,currencyStr)
         //Coin holdings count
         newRow.childNodes[5].childNodes[5].childNodes[1].innerHTML = coinData[i].holdings;
 
-        newRow.childNodes
+        newRow.id = "";
+        newRow.style = "display:flex";
         coinList.appendChild(newRow);
-    }  
-   
+    }     
 }
 
 function formatPrices(number)
