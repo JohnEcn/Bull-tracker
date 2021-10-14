@@ -4,6 +4,7 @@
   z-index: 98;
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
+  display: none;
 }
 #insert-editDataPopup {
   width: 642px;
@@ -18,7 +19,7 @@
   bottom: 0;
   margin: auto;
 
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -91,7 +92,10 @@
   background: linear-gradient(270deg, #b246e4 -34.67%, #657eff 65.33%);
   outline: none;
   border: 0px;
-  cursor: not-allowed;
-  color: white;
+  cursor: pointer;
   font-size: 18px;
+}
+#coinErrorLabel {
+  color: red;
+  font-size: 14px;
 }
