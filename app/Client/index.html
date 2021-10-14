@@ -8,12 +8,43 @@
     <link rel="stylesheet" href="../UI/css/mainStructure.css">
     <link rel="stylesheet" href="../UI/css/mainStyle.css">
     <link rel="stylesheet" href="../UI/css/coinList.css">
+    <link rel="stylesheet" href="../UI/css/chart.css">
+    <link rel="stylesheet" href="../UI/css/InsertEditPopup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="mainContainer">
+    <div id="fullPageovelay"  onclick="closeUserDataPopup()">
+    </div>
+    <div id='insert-editDataPopup'>
+        <div id="coinData">
+            <div class="coinDataInput">
+                <label for="coinName">Coin name</label>
+                <input name="coinName "type="text">
+            </div>
+            <div class="coinDataInput">
+                <label for="coinName">Holdings</label>
+                <input name="coinName " type="text">
+            </div>
+            <div class="coinDataInput">
+                <label for="coinName">Average cost</label>
+                <input name="coinName " type="text">
+            </div>
+        </div>
+        <div id="addBtn">
+            <div id="imageDiv">
+                <img id="coinImg" src="https://cryptoicon-api.vercel.app/api/icon/xmr" alt="No image found">
+                <span id="coinSymbol">XMR</span>
+            </div>
+            <div id="btnDiv">
+                <button id="saveButton" disabled>Save</button>
+            </div>
+        </div>
+    </div>
+    <div id="mainContainer">    
         <div id="leftSidePanel">
-            <div id="coinListContainer">
-               
+            <div id="coinListContainer">               
                 <div id="coinLabelsRow" class="coinListRow">
                     <div id="leftSegment" class="coinListRowSegment">
                     </div>
@@ -24,14 +55,15 @@
                         <span class="coinLabel">Holdings</span>
                     </div>  
                     <div id="buttonsSegment" class="coinListRowSegment">
+                        <button onclick="openUserDataPopup()">Add coin</button>
                     </div>
                 </div>
 
-                <div  class="coinListRow" id="coinRowPrototype">
+                <div  class="coinListRow" id="coinRowPrototype" style="display:none">
                     <div id="leftSegment" class="coinListRowSegment">
                         <div id="upperSegment" class="coinListColumnSegment"></div>
                         <div id="midSegment" class="coinListColumnSegment">
-                            <img id="coinIcon" src="https://cryptoicon-api.vercel.app/api/icon/btc" alt="">
+                            <img id="coinIcon" src="" alt="">
                             <span id="coinNameLabel">Bitcoin</span>
                         </div>
                         <div id="bottomSegment" class="coinListColumnSegment">
@@ -64,12 +96,26 @@
         </div>
         <div id="rightSidePanel">
             <div id="portfChartContainer">
-
+                <div id="totalHoldingsUpperDiv">
+                    <div id="totalHoldingsLabel">
+                        <span id="totalHoldings"></span>
+                    </div>
+                    <div id="percentChangesLabel">
+                        <span id="percentChanges"></span>
+                    </div>
+                </div>
+                <div id="chartBottomDiv">
+                    <canvas width="95%" id="myChart"></canvas>
+                </div>
             </div>
         </div>
     </div>    
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../UI/Javascript/coinList.js"></script>
+<script src="../UI/Javascript/portfChart.js"></script>
+<script src="../UI/Javascript/utils.js"></script>
+<script src="../UI/Javascript/userDataPopup.js"></script>
 <script src="utils.js"></script>
 <script src="dataEndpoint.js"></script>
 <script src="coinData.js"></script>

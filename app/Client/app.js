@@ -10,14 +10,17 @@
         {coinName:"basic-attention-token",symbol:"bat",holdings:12.5},
         {coinName:"callisto",symbol:"clo",holdings:115},
         {coinName:"gnosis",symbol:"gno",holdings:0.1},
+        {coinName:"ravencoin",symbol:"rvn",holdings:50}
     ];
     
-    const dataDaysBefore = 90;
+    const dataDaysBefore =1;
     const currency = "eur";
-    const interval = "daily";   
+    const currencySymbol = "€";
+    const interval = "hourly ";   
     
     function loadData()
     {
+        blurBg(4);
         getCoinsData(objClone(coinList),currency,dataDaysBefore,interval);
     }
 
@@ -30,8 +33,13 @@
         const portfChart = buildPortfolioChartData(objClone(coinsData),objClone(coinList)); 
         
         //Initiate the display of the UI and data.
-        console.log(portfChart);
-        console.log(coinsData);
+        coinsData.sort(function(a, b) {
+         return b.holdings * b.currentPrice - a.holdings * a.currentPrice
+        });
+        displayCoinList(objClone(coinsData),currencySymbol);
+        totalHoldings(objClone(portfChart),currencySymbol)
+        buildChart(objClone(portfChart));
+        blurBg(0);
     }   
-    loadData();
+loadData(); 
 }
