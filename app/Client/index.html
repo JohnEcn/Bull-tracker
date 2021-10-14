@@ -20,25 +20,26 @@
     <div id='insert-editDataPopup'>
         <div id="coinData">
             <div class="coinDataInput">
-                <label for="coinName">Coin Symbol <span id="coinErrorLabel"></span></label>
-                <input id="coinNameSearch" name="coinName "type="text" onfocusout="searchCoin()">
+                <label for="coinSymbol">Coin Symbol <span id="coinErrorLabel"></span></label>
+                <input id="coinNameSearch" name="coinName" autocomplete="off" type="text" onkeyup="getCoinData()">
             </div>
             <div class="coinDataInput">
-                <label for="coinName">Holdings</label>
-                <input name="coinName " type="text">
+                <label for="coinHoldings">Holdings</label>
+                <input id="newCoinHoldings" name="coinHoldings" autocomplete="off" type="text">
             </div>
             <div class="coinDataInput">
-                <label for="coinName">Average cost</label>
-                <input name="coinName " type="number">
+                <label for="avgCost">Average cost</label>
+                <input id="avgCost" name="avgCost" autocomplete="off" type="number">
             </div>
         </div>
         <div id="addBtn">
             <div id="imageDiv">
                 <img id="coinImg" src="" alt="">
-                <span id="coinSymbol"></span>
+                <span id="coinName"></span>
+                <span id="coinId" style="display:none;"></span>
             </div>
             <div id="btnDiv">
-                <button id="saveButton" disabled="true " onclick="console.log('kek')">Save</button>
+                <button id="saveButton" disabled="true " onclick="addNewCoin()">Save</button>
             </div>
         </div>
     </div>
@@ -118,7 +119,9 @@
 <script src="../UI/Javascript/portfChart.js"></script>
 <script src="../UI/Javascript/utils.js"></script>
 <script src="../UI/Javascript/userDataPopup.js"></script>
+<script src="../UI/Javascript/userDataHandler.js"></script>
 <script src="utils.js"></script>
+<script src="localStorage.js"></script>
 <script src="dataEndpoint.js"></script>
 <script src="coinData.js"></script>
 <script src="app.js"></script>

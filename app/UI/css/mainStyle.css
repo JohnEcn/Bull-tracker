@@ -28,11 +28,12 @@
 }
 #newCoinBtn {
   width: 160px;
-  height: 30px;
+  height: 35px;
   border-radius: 10px;
   background: linear-gradient(270deg, #b246e4 -34.67%, #657eff 65.33%);
+  color: black;
   outline: none;
   border: 0px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
 }

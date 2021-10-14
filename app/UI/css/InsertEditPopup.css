@@ -80,8 +80,9 @@
 #coinImg {
   width: 100px;
   height: 100px;
+  visibility: hidden;
 }
-#coinSymbol {
+#coinName {
   color: white;
   font-size: 20px;
 }
