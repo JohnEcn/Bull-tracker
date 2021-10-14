@@ -1,5 +1,5 @@
 {
-    let coinList = JSON.parse(fetchUserData());    
+    let coinList = [];
 
     const dataDaysBefore =7;
     const currency = "eur";
@@ -9,6 +9,7 @@
     function loadData()
     {
         blurBg(4);
+        coinList = JSON.parse(fetchUserData());    
         if(coinList.length != 0)
         {
             getCoinsData(objClone(coinList),currency,dataDaysBefore,interval);
