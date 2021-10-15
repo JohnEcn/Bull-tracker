@@ -52,3 +52,27 @@
   padding-left: 35px;
   font-weight: 400;
 }
+
+@media screen and (max-width: 1300px) {
+  #totalHoldings {
+    font-size: 46px;
+  }
+  #percentChanges {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 920px) {
+  #totalHoldingsLabel {
+    justify-content: center;
+  }
+  #percentChangesLabel {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  #totalHoldings {
+    font-size: 36px;
+  }
+  #percentChanges {
+    font-size: 12px;
+  }
+}

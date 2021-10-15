@@ -37,3 +37,11 @@
   cursor: pointer;
   font-size: 20px;
 }
+
+@media screen and (max-width: 1300px) {
+  #newCoinBtn {
+    width: 120px;
+    height: 25px;
+    font-size: 14px;
+  }
+}
