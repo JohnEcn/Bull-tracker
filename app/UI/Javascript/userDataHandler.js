@@ -7,7 +7,7 @@ function addCoin(coinName,coinId,coinSymbol,holdings)
     {
         if(coinId == currentCoinList[i].coinName)
         {
-            currentCoinList[i].holdings =  Number.parseInt(currentCoinList[i].holdings) + Number.parseInt(holdings);
+            currentCoinList[i].holdings = Number.parseInt(holdings);
             setUserData(JSON.stringify(currentCoinList));
             return;
         }
