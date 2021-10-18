@@ -57,7 +57,7 @@
 }
 .coinDataInput label {
   color: white;
-  font-size: 18px;
+  font-size: 14px;
 }
 #imageDiv {
   width: 60%;
@@ -85,6 +85,11 @@
 #coinName {
   color: white;
   font-size: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 #saveButton {
   width: 100%;
@@ -99,4 +104,28 @@
 #coinErrorLabel {
   color: red;
   font-size: 14px;
+}
+@media screen and (max-width: 700px) {
+  #insert-editDataPopup {
+    width: 80%;
+    height: 60%;
+
+    flex-direction: column;
+  }
+  #coinImg {
+    width: 70px;
+    height: 70px;
+  }
+  #addBtn {
+    width: 80%;
+  }
+  #imageDiv {
+    width: 100%;
+  }
+}
+@media screen and (max-height: 600px) {
+  #insert-editDataPopup {
+    width: 80%;
+    height: 90%;
+  }
 }
