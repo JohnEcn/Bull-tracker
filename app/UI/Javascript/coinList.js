@@ -21,7 +21,7 @@ function displayCoinList(coinData,currencyStr)
         //CoinName
         newRow.childNodes[1].childNodes[3].childNodes[3].innerHTML = coinData[i].coinName   ;
         //Coin Image
-        newRow.childNodes[1].childNodes[3].childNodes[1].src=coinData[i].coinImg;
+        newRow.childNodes[1].childNodes[3].childNodes[1].src=coinData[i].coinImg.replace("/large/", "/small/");;
         //Coin price
         newRow.childNodes[3].childNodes[3].childNodes[1].innerHTML = currencyStr + formatPrices(coinData[i].currentPrice);
         //Coin percentage change
