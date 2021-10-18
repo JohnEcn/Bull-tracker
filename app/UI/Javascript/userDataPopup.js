@@ -31,7 +31,7 @@
         blurBg(0);
     }
 
-    function getCoinData()
+    async function getCoinData()
     {
         let searchQuery = document.getElementById("coinNameSearch").value.toLowerCase();
         let imgElement = document.getElementById("coinImg");
@@ -46,11 +46,7 @@
     
         if(coinSymbol != "")
         {
-            imgElement.src = "https://cryptoicons.org/api/icon/"+ coinSymbol +"/100";  
-            imgElement.onerror = function()        
-            {
-                imgElement.src="https://cryptoicon-api.vercel.app/api/icon/"+ coinSymbol;
-            };
+            imgElement.src = await getCoinImgUrl(coinId);  
             imgElement.style.visibility = "initial";
             nameElement.innerText = coinName;
             idElement.innerText = coinId;
@@ -88,14 +84,23 @@
         let coinSymbol = document.getElementById("coinNameSearch").value;
         let coinId = document.getElementById("coinId").innerText;
         let coinName = document.getElementById("coinName").innerText;
+        let coinImgUrl = document.getElementById("coinImg").src;
         let holdings = document.getElementById("newCoinHoldings").value;
 
         if(!Number.isInteger(Number.parseInt(holdings)))
         {
             holdings = 0;
         }
-        addCoin(coinName,coinId,coinSymbol,holdings);
+        addNewPortfCoin(coinName,coinId,coinSymbol,coinImgUrl,holdings);
         closeUserDataPopup();
         loadData(); 
-   }
+    }
+    async function getCoinImgUrl(coinId)
+    {
+        let imgUrl = "";
+        await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+coinId)
+        .then(response => response.text())
+        .then(text => imgUrl = JSON.parse(text)[0].image);
+        return imgUrl;
+    }
   

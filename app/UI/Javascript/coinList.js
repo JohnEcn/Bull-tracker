@@ -1,3 +1,4 @@
+blurBg(8);
 function displayCoinList(coinData,currencyStr)
 {
     //Get the parent element of coinsList
@@ -18,13 +19,9 @@ function displayCoinList(coinData,currencyStr)
         let newRow = coinRowDiv.cloneNode(true);
 
         //CoinName
-        newRow.childNodes[1].childNodes[3].childNodes[3].innerHTML = formatName(coinData[i].coinName);
+        newRow.childNodes[1].childNodes[3].childNodes[3].innerHTML = coinData[i].coinName   ;
         //Coin Image
-        newRow.childNodes[1].childNodes[3].childNodes[1].src="https://cryptoicons.org/api/icon/"+ coinData[i].coinSymbol +"/40";
-        newRow.childNodes[1].childNodes[3].childNodes[1].onerror = function()
-        {
-            newRow.childNodes[1].childNodes[3].childNodes[1].src="https://cryptoicon-api.vercel.app/api/icon/"+ coinData[i].coinSymbol;;
-        };
+        newRow.childNodes[1].childNodes[3].childNodes[1].src=coinData[i].coinImg;
         //Coin price
         newRow.childNodes[3].childNodes[3].childNodes[1].innerHTML = currencyStr + formatPrices(coinData[i].currentPrice);
         //Coin percentage change
@@ -37,6 +34,7 @@ function displayCoinList(coinData,currencyStr)
         newRow.id = "";
         newRow.style = "display:flex";
         coinList.appendChild(newRow);
+        blurBg(0);
     }     
 }
 

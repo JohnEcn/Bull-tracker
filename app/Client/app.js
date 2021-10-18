@@ -8,8 +8,7 @@
     
     function loadData()
     {
-        blurBg(4);
-        coinList = JSON.parse(fetchUserData());    
+        coinList = JSON.parse(fetchUserCoins());    
         if(coinList.length != 0)
         {
             getCoinsData(objClone(coinList),currency,dataDaysBefore,interval);
@@ -24,7 +23,6 @@
     {
         if(rawCoinData == null)
         {
-            blurBg(0);
             //Display new user message
             return;
         }
@@ -39,10 +37,10 @@
         coinsData.sort(function(a, b) {
          return b.holdings * b.currentPrice - a.holdings * a.currentPrice
         });
+        console.log(coinsData);
         displayCoinList(objClone(coinsData),currencySymbol);
         totalHoldings(objClone(portfChart),currencySymbol)
         buildChart(objClone(portfChart));
-        blurBg(0);
     }   
 loadData(); 
 }

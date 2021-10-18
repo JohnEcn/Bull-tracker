@@ -2,21 +2,21 @@
     function getCoinsData(coinList,currency,dataDaysBefore,interval)
     {
         const promiseArr = [];
-        const coinNames = [];
+        const coinIds = [];
         coinList.forEach(element=>
             {
-                coinNames.push(element.coinName)
+                coinIds.push(element.coinId)
             })
 
         //Fetching historical data for each coin
-        for(let i = 0; i<coinNames.length; i++)
+        for(let i = 0; i<coinIds.length; i++)
         {            
-            let result = fetchCoinData(coinNames[i],currency,dataDaysBefore,interval);
+            let result = fetchCoinData(coinIds[i],currency,dataDaysBefore,interval);
             promiseArr.push(result);                   
         }
         
         //Fetching current data for all coins with a single request
-        let result = fetchCoinCurrentPrice(coinNames,currency);
+        let result = fetchCoinCurrentPrice(coinIds,currency);
         promiseArr.push(result);   
         
         
@@ -65,7 +65,7 @@
         //Combine current and historical data
         coinsList.forEach(coin => 
         {
-            let coinName = coin;
+            let coinId = coin;
             let currentData = currentCoinDataArr[coin];
             let historicalData = [];
             
@@ -80,7 +80,7 @@
             
             coinFormattedData.push(
             {
-                coinName:coinName,
+                coinId:coinId,
                 currentData:currentData,
                 historicalData: historicalData
             });
@@ -99,16 +99,21 @@
         let priceKey = currentDataKeys[0].length < currentDataKeys[1].length ? currentDataKeys.splice(0,1)[0] : currentDataKeys.splice(1,1)[0];
         let mkCapKey = currentDataKeys[0];
         let holdings = 0;
-        let coinSymbol= 0;
+        let coinSymbol= "";
+        let coinName = "";
+        let coinImg = "";
+        
         for(let i = 0; i<coinsData.length; i++)
         {        
             for(let j = 0; j<coinsList.length; j++)
             {
-                if(coinsList[j].coinName == coinsData[i].coinName)
+                if(coinsList[j].coinId == coinsData[i].coinId)
                 {
                     holdings = coinsList[j].holdings; 
-                    coinSymbol = coinsList[j].symbol;                 
-                }
+                    coinSymbol = coinsList[j].coinSymbol;  
+                    coinName = coinsList[j].coinName; 
+                    coinImg = coinsList[j].coinImgUrl;
+                } 
             }
 
             //Find least recent price / max price / min price
@@ -118,8 +123,10 @@
 
             formattedData.push(
                 {
-                    coinName:coinsData[i].coinName,
+                    coinName:coinName,
+                    coinId:coinsData[i].coinId,
                     coinSymbol:coinSymbol,
+                    coinImg:coinImg,
                     holdings:holdings,
                     currentPrice:coinsData[i].currentData[priceKey],
                     mkCap:coinsData[i].currentData[mkCapKey],
@@ -169,7 +176,7 @@
         let holdingsArr = [];
         coinsList.forEach(element =>
             {
-                holdingsArr[element.coinName] = element.holdings;
+                holdingsArr[element.coinId] = element.holdings;
             })    
 
         const portfChartData = []; 
@@ -192,7 +199,7 @@
                 
             for(let k = 0; k<coinsData.length; k++)
             {
-                let coinHolding = holdingsArr[coinsData[k].coinName];
+                let coinHolding = holdingsArr[coinsData[k].coinId];
                     
                 holdings += coinsData[k].historicalData[i][1] * coinHolding;     
                 avgDate +=  coinsData[k].historicalData[i][0];  
@@ -206,7 +213,7 @@
         let currentHoldings = 0;
         for(let k = 0; k<coinsData.length; k++)
         {
-            let coinHolding = holdingsArr[coinsData[k].coinName];                    
+            let coinHolding = holdingsArr[coinsData[k].coinId];                    
             currentHoldings += coinsData[k].currentPrice * coinHolding;  
         }
         portfChartData.push(["Right now",currentHoldings])
