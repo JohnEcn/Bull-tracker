@@ -18,9 +18,21 @@
   border-bottom: 1px solid #cccccc;
   padding-bottom: 5px;
 }
+#coinLabelsRow:hover {
+  background: #191625;
+  cursor: default;
+}
 .coinListRow {
   border-bottom: 1px solid #636363;
   background-color: #191625;
+}
+.coinListRow:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    270deg,
+    rgba(72, 27, 92, 0.42) 2.22%,
+    rgba(32, 39, 75, 0.63) 82.82%
+  );
 }
 .coinLabel {
   color: white;
