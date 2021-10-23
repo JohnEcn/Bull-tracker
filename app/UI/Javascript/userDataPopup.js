@@ -1,4 +1,5 @@
     let coinList = null;
+    let timeOutId = null;
 
     async function openUserDataPopup()
     {   
@@ -31,15 +32,71 @@
         blurBg(0);
     }
 
-    async function getCoinData()
+    function coinSymbolInput()
     {
-        let searchQuery = document.getElementById("coinNameSearch").value.toLowerCase();
+        clearTimeout(timeOutId);
+        timeOutId = setTimeout(() =>
+        {
+            let searchQuery = document.getElementById("coinNameSearch").value.toLowerCase();
+            let coinData = searchForCoin(searchQuery);
+            if(coinData.length == 1 || coinData.length == 0)
+            {
+                coinData.length == 1 ? setCoinData(coinData[0]) : setCoinData(["","",""]) ;
+            }
+            else
+            {
+                console.log(coinData);
+                coinDropDown(coinData);
+            }
+
+        },460)
+    }
+
+    function searchForCoin(coinSymbol)
+    {
+       const coinData = [];
+       for(let i=0;i<coinList.length;i++)
+        {
+            if(coinList[i].symbol.toLowerCase() == coinSymbol)
+            {
+                const temp = ["","",""];
+                temp[2] = coinList[i].symbol;
+                temp[1] = coinList[i].name; 
+                temp[0] = coinList[i].id;     
+                coinData.push(temp)                                        
+            }
+        }
+        return coinData;
+    }
+
+    async function coinDropDown(coinData)
+    {          
+        let container = document.getElementById("dropDownContent");
+        container.innerHTML = "";
+        for(let i=0; i<coinData.length; i++)
+        {
+            const newDiv = document.createElement("div");
+            newDiv.innerHTML = '<div class="dropDownCoin">'
+                    +  '<img class="dropDownImg" src="'+await getCoinImgUrl(coinData[i][0])+'" alt="">'
+                    +   '<span> - </span>'     
+                    +    '<span class="dropDownName">'+coinData[i][1]+'</span>'
+                + '</div>';
+               newDiv.addEventListener("click", function() 
+               {
+                   setCoinData(coinData[i]);
+               });
+            container.appendChild(newDiv);
+        }
+    }
+
+    async function setCoinData(coinData)
+    {
         let imgElement = document.getElementById("coinImg");
         let nameElement = document.getElementById("coinName");
         let idElement = document.getElementById("coinId");
         let errorLabel = document.getElementById("coinErrorLabel");
+        document.getElementById("dropDownContent").innerHTML = "";        
 
-        const coinData = searchForCoin(searchQuery);
         const coinSymbol = coinData[2];
         const coinName = coinData[1];  
         const coinId = coinData[0];   
@@ -65,20 +122,6 @@
         }  
     }
 
-    function searchForCoin(coinSymbol)
-   {
-       const coinData = ["","",""];
-       for(let i=0;i<coinList.length;i++)
-        {
-            if(coinList[i].symbol.toLowerCase() == coinSymbol)
-            {
-                coinData[2] = coinList[i].symbol;
-                coinData[1] = coinList[i].name; 
-                coinData[0] = coinList[i].id;                                             
-            }
-        }
-        return coinData;
-    }
     function addNewCoin()
     {
         let coinSymbol = document.getElementById("coinNameSearch").value;

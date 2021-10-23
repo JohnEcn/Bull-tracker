@@ -21,7 +21,11 @@
         <div id="coinData">
             <div class="coinDataInput">
                 <label for="coinSymbol">Coin Symbol <span id="coinErrorLabel"></span></label>
-                <input id="coinNameSearch" name="coinName" autocomplete="off" type="text" onkeyup="getCoinData()">
+                <input id="coinNameSearch" name="coinName" autocomplete="off" type="text" onkeyup="coinSymbolInput()">
+                <div id="dropDownContainer">
+                    <div id="dropDownContent">
+                    </div>
+                </div>                
             </div>
             <div class="coinDataInput">
                 <label for="coinHoldings">Holdings</label>
