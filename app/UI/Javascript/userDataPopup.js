@@ -27,8 +27,20 @@
    
     function closeUserDataPopup()
     {
+        //Reset to initial state
+        document.getElementById("coinNameSearch").value = "";
+        document.getElementById("newCoinHoldings").value = "";
+        document.getElementById("coinImg").src = "";
+        document.getElementById("coinName").innerText = "";
+        document.getElementById("coinId").innerText = "";
+        document.getElementById("coinImg").style.visibility = "hidden";
+        document.getElementById("saveButton").disabled = true;
+        document.getElementById("coinNameSearch").disabled = false; 
+        document.getElementById("deleteCoinBtn").style.display = "none";
+        
         document.getElementById('insert-editDataPopup').style.display = "none";
         document.getElementById('fullPageovelay').style.display = "none";
+           
         blurBg(0);
     }
 
@@ -146,4 +158,28 @@
         .then(text => imgUrl = JSON.parse(text)[0].image);
         return imgUrl;
     }
-  
+    async function editCoin(coinSymbol,coinName,coinId,holdings,imgUrl)
+    {
+        await openUserDataPopup();
+        
+        //set values
+        document.getElementById("coinNameSearch").value = coinSymbol;
+        document.getElementById("newCoinHoldings").value = holdings;
+        document.getElementById("coinImg").src = imgUrl;
+        document.getElementById("coinName").innerText = coinName;
+        document.getElementById("coinId").innerText = coinId;
+        document.getElementById("coinImg").style.visibility = "initial";
+        document.getElementById("saveButton").disabled = false;
+
+        //Disable the symbol textfield
+        document.getElementById("coinNameSearch").disabled = true;
+
+        //Display delete button
+        document.getElementById("deleteCoinBtn").style.display = "initial";
+        document.getElementById("deleteCoinBtn").addEventListener("click",function()
+        {
+            removePortfCoin(coinId);
+            closeUserDataPopup();
+            loadData();
+        })
+    }

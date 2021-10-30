@@ -32,6 +32,11 @@
 }
 #buttonsSegment {
   width: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* Upper row with the 'price' and 'holdings' label */
@@ -85,6 +90,15 @@
   align-items: center;
 }
 
+#editButton {
+  width: 25px;
+  height: 25px;
+  visibility: hidden;
+}
+.coinListRow:hover #editButton {
+  visibility: initial;
+}
+
 @media screen and (max-width: 1300px) {
   .coinListRow {
     height: 55px;
@@ -122,9 +136,9 @@
   }
   #middleSegment,
   #rightSegment {
-    width: 29%;
+    width: 26%;
   }
   #buttonsSegment {
-    width: 0%;
+    width: 3%;
   }
 }

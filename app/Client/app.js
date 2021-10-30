@@ -37,7 +37,6 @@
         coinsData.sort(function(a, b) {
          return b.holdings * b.currentPrice - a.holdings * a.currentPrice
         });
-        console.log(coinsData);
         displayCoinList(objClone(coinsData),currencySymbol);
         totalHoldings(objClone(portfChart),currencySymbol)
         buildChart(objClone(portfChart));

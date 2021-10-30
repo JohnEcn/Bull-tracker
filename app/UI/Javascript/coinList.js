@@ -30,6 +30,11 @@ function displayCoinList(coinData,currencyStr)
         newRow.childNodes[5].childNodes[3].childNodes[1].innerHTML = currencyStr + formatPrices(coinData[i].holdings * coinData[i].currentPrice);
         //Coin holdings count
         newRow.childNodes[5].childNodes[5].childNodes[1].innerHTML = coinData[i].holdings;
+        //Edit coin eventListener
+        newRow.childNodes[7].addEventListener("click",function()
+        {
+            editCoin(coinData[i].coinSymbol,coinData[i].coinName,coinData[i].coinId,coinData[i].holdings,coinData[i].coinImg)
+        });
 
         newRow.id = "";
         newRow.style = "display:flex";
