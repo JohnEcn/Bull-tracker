@@ -176,6 +176,12 @@
 
         //Display delete button
         document.getElementById("deleteCoinBtn").style.display = "initial";
+
+        //Clone the delete button to remove existing eventListeners 
+        let deleteBtn = document.getElementById("deleteCoinBtn");
+        let delBtnParent = deleteBtn.parentNode;
+        delBtnParent.removeChild(deleteBtn);
+        delBtnParent.appendChild(deleteBtn.cloneNode(true));    
         document.getElementById("deleteCoinBtn").addEventListener("click",function()
         {
             removePortfCoin(coinId);
