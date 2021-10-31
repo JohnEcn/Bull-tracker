@@ -49,6 +49,20 @@
   cursor: pointer;
   font-size: 20px;
 }
+#loadingGif {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1px;
+  z-index: 99;
+  display: none;
+}
+#loadingGif img {
+  width: 70px;
+  height: 70px;
+}
 
 @media screen and (max-width: 1300px) {
   #newCoinBtn {
