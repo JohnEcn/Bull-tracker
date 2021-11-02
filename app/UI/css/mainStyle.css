@@ -62,6 +62,27 @@
   width: 70px;
   height: 70px;
 }
+#errorMsgPanel {
+  width: 100vw;
+  height: 0vh;
+  position: absolute;
+  top: 0px;
+  z-index: 98;
+  background-color: rgba(190, 87, 87, 0.582);
+  display: none;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+#errorMsg {
+  color: white;
+  font-weight: 700;
+  display: none;
+}
 
 @media screen and (max-width: 1300px) {
   #newCoinBtn {

@@ -4,10 +4,20 @@
     const dataDaysBefore =7;
     const currency = "eur";
     const currencySymbol = "€";
-    const interval = "hourly";   
+    const interval = "hourly";  
+    
+    let timeoutId;
     
     function loadData()
     {
+        //if this timeout does not get cancelled in time then a delay message appears
+        timeoutId = setTimeout(function()
+        {
+            let msg  = "There are some delays using the Coingkeco API.";
+            displayErrorMsg(msg,5);
+
+        },7000);
+
         coinList = JSON.parse(fetchUserCoins());    
         if(coinList.length != 0)
         {
@@ -21,11 +31,20 @@
 
     function launchApp(rawCoinData,requestErrors = [])
     {
+        clearTimeout(timeoutId);
+        if(requestErrors.length != 0)
+        {
+            let msg  = "There was an error retrieving the coin data. Please try again in 30 seconds.";
+            blurBg(0);
+            displayErrorMsg(msg);
+            return;
+        }
+
         if(rawCoinData == null)
         {
             blurBg(0);
             return;
-        }
+        }        
         
         //Convert raw data to user Friendly data
         const coinsData = extractCoinData(objClone(rawCoinData),objClone(coinList));        
