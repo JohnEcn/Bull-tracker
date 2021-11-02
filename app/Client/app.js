@@ -23,7 +23,7 @@
     {
         if(rawCoinData == null)
         {
-            //Display new user message
+            blurBg(0);
             return;
         }
         
