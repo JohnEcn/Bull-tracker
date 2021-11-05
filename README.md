@@ -1,7 +1,7 @@
 
 
 # **BullTracker** - Cryptocurrency portfolio tracker
-#### Data from [CoinGecko][coincgeko] API <img src="https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png" alt="alt text" width="30px">
+#### Data from [CoinGecko][coincgeko] API <img src="https://static.coingecko.com/s/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408.png" alt="alt text" width="80px">
 
 
 ### Features
