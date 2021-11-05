@@ -86,9 +86,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 #daysRange {
   border-right: 1px solid rgba(94, 94, 94, 0.61);
+}
+#currency {
+  border-left: 1px solid rgba(94, 94, 94, 0.61);
 }
 #daysRange:hover,
 #currency:hover {
@@ -116,5 +120,11 @@
   }
   #percentChanges {
     font-size: 12px;
+  }
+  #rightFiller {
+    width: 55%;
+  }
+  #settingsDiv {
+    width: 45%;
   }
 }
