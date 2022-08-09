@@ -26,6 +26,10 @@ When all API calls are complete, then the data get combined,modified and finally
 Is responsible for displaying the user-friendly data that receives from the Client.
 Also has the functionality of saving and editing the user data (coins, holdings, currency, etc) using the local storage.
 
+#### Structure overview
+
+![](https://iili.io/U88BDX.png)
+   
    [bullTracker-Link]: <https://johnecn.github.io>
    [bullTrackerDemo-Link]: <https://johnecn.github.io/demo>
    [coincgeko]: <https://www.coingecko.com/en>
